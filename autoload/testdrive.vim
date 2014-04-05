@@ -13,6 +13,10 @@ if !exists('g:testdrive#detect')
 endif
 
 
+if !exists('g:testdrive#use_dispatch')
+  let g:testdrive#use_dispatch=1
+endif
+
 function s:detect_test_provider()
   for provider in g:test_providers
     let result=function(provider.'#detect')()
@@ -49,7 +53,7 @@ endfunction
 
 function testdrive#test()
   let prg=s:get_test_program()
-  if !exists('g:loaded_dispatch')
+  if g:testdrive#use_dispatch && exists('g:loaded_dispatch')
     execute 'Dispatch '.prg
   elseif !empty(prg)
     cexpr system(prg)
