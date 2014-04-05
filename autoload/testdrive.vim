@@ -7,9 +7,11 @@ if !exists('g:testdrive#cache_provider')
   let g:testdrive#cache_provider=1
 endif
 
+
 if !exists('g:testdrive#detect')
   let g:testdrive#detect=1
 endif
+
 
 function s:detect_test_provider()
   for provider in g:test_providers
