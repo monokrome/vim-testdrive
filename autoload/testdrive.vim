@@ -11,7 +11,7 @@ endif
 
 
 if !exists('g:testdrive#use_dispatch')
-  let g:testdrive#use_dispatch=1
+  let g:testdrive#use_dispatch=0
 endif
 
 
