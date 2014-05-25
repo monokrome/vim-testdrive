@@ -15,13 +15,13 @@ if !exists('g:testdrive#use_dispatch')
 endif
 
 
-if !exists('g:testdrive#always_open_results')
-  let g:testdrive#always_open_results=1
+if !exists('g:loaded_dispatch')
+  let g:testdrive#use_dispatch=0
 endif
 
 
-if !exists('g:test_state')
-  let g:test_state=-1
+if !exists('g:testdrive#always_open_results')
+  let g:testdrive#always_open_results=1
 endif
 
 
@@ -64,25 +64,26 @@ endfunction
 function testdrive#test()
   let provider=s:detect_test_provider()
   let prg=s:get_test_program(provider)
-  if !g:testdrive#use_dispatch && exists('g:loaded_dispatch')
-    let dispatch_suffix=''
-    if !g:testdrive#always_open_results
-      let dispatch_suffix='!'
-    endif
-    execute 'Dispatch'.dispatch_suffix.' '.prg
-  elseif !empty(prg)
-    let oldmakeprg=&makeprg
+  if !empty(prg)
     let oldErrorFormat=&errorformat
     let newErrorFormat=s:get_test_errorformat(provider, prg)
     if !empty(newErrorFormat)
       let &errorformat=newErrorFormat
     endif
-    " TODO: Why does shellescape break this?
-    cexpr system(prg)
-    let g:test_state=v:shell_error
-    if g:testdrive#always_open_results
-      copen
+    if g:testdrive#use_dispatch == 1
+      let dispatch_suffix=''
+      if !g:testdrive#always_open_results
+        let dispatch_suffix='!'
+      endif
+      execute 'Dispatch'.dispatch_suffix.' '.prg
+    else
+      " TODO: Why does shellescape break this?
+      cexpr system(prg)
+      if g:testdrive#always_open_results
+        copen
+      endif
     endif
     let &errorformat=oldErrorFormat
   endif
 endfunction
+
