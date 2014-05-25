@@ -14,8 +14,7 @@ You can use the `:Test` command to run tests if any provider(s) are able to run
 tests for your project. The provider API is very simple to get started with in
 that case that current providers aren't available for your tools.
 
-Currently, the plugin ships with simple support for running tests using the
-following testing tools:
+Currently, the plugin ships with simple support for running tests using the following testing tools:
 
 - [mocha][mca] implemented [here][mochapvdr]
 - [npm][npm] implemented [here][npmpvdr]
@@ -79,8 +78,6 @@ function example#testdrive#provider#get_command()
   return 'example command here'
 endfunction
 ```
-
-
 
 
 [mca]: http://visionmedia.github.io/mocha/
