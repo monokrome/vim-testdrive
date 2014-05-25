@@ -59,7 +59,7 @@ the tree for a file called **package.json**. If the file is found, then the
 filename as provided by [findfile][fndfl] is returned.  The `detect` function
 accepts no arguments.
 
-A provider is expected to define a `get_command` function which willm be called
+A provider is expected to define a `get_command` function which will be called
 after the provider detects that it is useful. The `get_command` is expected to
 return a shell command that will be executed in order to run tests. For
 instance, the [mocha provider][mochapvdr] currently returns 'mocha test'. This
@@ -68,19 +68,20 @@ returning a string will most likely meet 99% of needs. The `get_command`
 function accepts no arguments.
 
 Optionally, a provider can also define a `get_errorformat` function. The
-`get_errorformat` function accepts one argument. The argument be the result
+`get_errorformat` function accepts one argument. The argument will be the result
 from the `get_command` call for the test being run. When this function is
 called, the provider is expected to either update the [errorformat][efm], or to
 return a string to be used for the [errorformat][efm] value. After running
-tests, the [errorformat][efm] will be automatically restored to whatever it was
-originally by testdrive.
+tests, the [errorformat][efm] will be automatically restored to the original
+value by testdrive.
 
 The last step is to register your provider with testdrive after defining it's
 module. This can be done by adding it to the `g:testdrive#test_providers`
 variable. The variable is expected to be a [list][lists] of provider modules.
 
 The ordering of items in this list matters, because the first provider which
-returns a non-empty value for detect will be used to run tests.
+returns a non-empty value from it's `detect` function will be used to run
+further tests.
 
 By default, it is something like this:
 
