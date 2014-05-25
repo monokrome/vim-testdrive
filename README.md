@@ -43,8 +43,12 @@ returning a string will most likely meet 99% of needs. The `get_command`
 function accepts no arguments.
 
 Optionally, a provider can also define a `get_errorformat` function. The
-`get_errorformat` function accepts one argument. It will be the result from the
-`get_command` call for the test being run.
+`get_errorformat` function accepts one argument. The argument be the result
+from the `get_command` call for the test being run. When this function is
+called, the provider is expected to either update the [errorformat][efm], or to
+return a string to be used for the [errorformat][efm] value. After running
+tests, the [errorformat][efm] will be automatically restored to whatever it was
+originally by testdrive.
 
 The last step is to register your provider with testdrive after defining it's
 module. This can be done by adding it to the `g:testdrive#test_providers`
@@ -88,11 +92,37 @@ This provider will always be used unless a previous provider succeeded in
 `detect`. When this provider executes, it will run the command `ls` and then
 send the resulting output into Vim's [quickfix][qf] window.
 
+Settings
+--------
+
+## g:testdrive#detect
+
+If set to 1 then providers will be asked to detect whether or not they are
+applicable for running tests. If set to 0 then testdrive will not use the
+detect() function on providers. Instead, it is expected that `g:testprg` will
+be set manually to the appropriate test program.
+
+## g:testdrive#use_dispatch
+
+Tests will be run via `:Dispatch` if this is set to 1. It will be automatically
+reset to 0 when Vim starts up if [vim-dispatch][dsptch] is not installed. This
+is set to 0 my default, because [vim-dispatch][dsptch] will end up overwriting
+the `errorformat` requested by test providers. Tests runs will still work if
+this is enabled, but the quickfix will not always be parsed properly - even
+when a provider sets it's own `errorformat`.
+
+## g:testdrive#always_open_results
+
+If set to 0, then testdrive won't automatically open the quickfix window after
+tests finished executing. This is set to 1 by default.
+
 
 [mca]: http://visionmedia.github.io/mocha/
 [npm]: http://npmjs.org
 [qf]: http://vimhelp.appspot.com/quickfix.txt.html#quickfix
+[efm]: http://vimhelp.appspot.com/options.txt.html#%27errorformat%27
 [npmpvdr]: https://github.com/monokrome/vim-testdrive/blob/master/autoload/testdrive/providers/npm.vim
 [mochapvdr]: https://github.com/monokrome/vim-testdrive/blob/master/autoload/testdrive/providers/mocha.vim
+[dsptch]: https://github.com/tpope/vim-dispatch
 [fndfl]: http://vimhelp.appspot.com/eval.txt.html#findfile%28%29
 [lists]: http://vimhelp.appspot.com/eval.txt.html#Lists
