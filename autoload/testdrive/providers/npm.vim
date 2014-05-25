@@ -5,5 +5,5 @@ endfunction
 
 function testdrive#providers#npm#get_command()
   " TODO: This could potentially be more intelligent.
-  return 'npm\ test'
+  return 'npm test'
 endfunction
