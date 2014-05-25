@@ -1,7 +1,7 @@
 if !exists('g:test_providers')
-  let g:test_providers = []
-  call add(g:test_providers, 'testdrive#providers#mocha')
-  call add(g:test_providers, 'testdrive#providers#npm')
+  let g:testdrive#test_providers = []
+  call add(g:testdrive#test_providers, 'testdrive#providers#mocha')
+  call add(g:testdrive#test_providers, 'testdrive#providers#npm')
 endif
 
 
@@ -26,7 +26,7 @@ endif
 
 
 function s:detect_test_provider()
-  for provider in g:test_providers
+  for provider in g:testdrive#test_providers
     let result=function(provider.'#detect')()
     if !empty(result)
       return provider
