@@ -25,6 +25,16 @@ Mocha support will currently only work if you have a file in `test/mocha.opts`.
 Settings
 --------
 
+#### g:testdrive#testprg
+
+Can be set to any test command, which will then be used by :Test. If non-empty,
+providers will be ignored. For example, you could add this to your vimrc if you
+wanted to explicitly define a test command:
+
+```VimL
+let g:testdrive#testprg='./manage.py test'
+```
+
 #### g:testdrive#detect
 
 If set to 1 then providers will be asked to detect whether or not they are
