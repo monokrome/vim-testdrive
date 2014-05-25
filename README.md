@@ -81,16 +81,6 @@ endfunction
 ```
 
 
-function testdrive#providers#mocha#get_errorformat(cmd)
-  " Case where error does have a traceback
-  let &errorformat = '%E%.%#%n) %s:,'
-  let &errorformat .= '%C%.%#Error: %m,'
-  let &errorformat .= '%C%.%#at %s (%f:%l:%c),'
-  let &errorformat .= '%Z%.%#at %s (%f:%l:%c),'
-  let &errorformat .= '%-G%.%#,'
-endfunction
-
-
 
 
 [mca]: http://visionmedia.github.io/mocha/
