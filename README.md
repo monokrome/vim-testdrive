@@ -4,7 +4,7 @@ vim-testdrive
 This is a plugin providing a more fluid testing workflow from within Vim.
 
 Vim testdrive allows you to run your tests from inside of Vim. It implements an
-interface for defining test "providers" which can tell testdrive which commands
+interface for defining test *providers* which can tell testdrive which commands
 to run and how to display them in Vim's [quickfix][qf] window.
 
 Usage
