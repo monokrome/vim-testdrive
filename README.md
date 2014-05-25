@@ -95,14 +95,14 @@ send the resulting output into Vim's [quickfix][qf] window.
 Settings
 --------
 
-## g:testdrive#detect
+#### g:testdrive#detect
 
 If set to 1 then providers will be asked to detect whether or not they are
 applicable for running tests. If set to 0 then testdrive will not use the
 detect() function on providers. Instead, it is expected that `g:testprg` will
 be set manually to the appropriate test program.
 
-## g:testdrive#use_dispatch
+#### g:testdrive#use_dispatch
 
 Tests will be run via `:Dispatch` if this is set to 1. It will be automatically
 reset to 0 when Vim starts up if [vim-dispatch][dsptch] is not installed. This
@@ -111,7 +111,7 @@ the `errorformat` requested by test providers. Tests runs will still work if
 this is enabled, but the quickfix will not always be parsed properly - even
 when a provider sets it's own `errorformat`.
 
-## g:testdrive#always_open_results
+#### g:testdrive#always_open_results
 
 If set to 0, then testdrive won't automatically open the quickfix window after
 tests finished executing. This is set to 1 by default.
