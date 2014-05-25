@@ -20,6 +20,11 @@ if !exists('g:testdrive#always_open_results')
 endif
 
 
+if !exists('g:test_state')
+  let g:test_state=-1
+endif
+
+
 function s:detect_test_provider()
   for provider in g:test_providers
     let result=function(provider.'#detect')()
@@ -72,12 +77,12 @@ function testdrive#test()
     if !empty(newErrorFormat)
       let &errorformat=newErrorFormat
     endif
-    let &makeprg=prg
-    make
+    " TODO: Why does shellescape break this?
+    cexpr system(prg)
+    let g:test_state=v:shell_error
     if g:testdrive#always_open_results
       copen
     endif
-    let &makeprg=oldmakeprg
     let &errorformat=oldErrorFormat
   endif
 endfunction
