@@ -32,7 +32,7 @@ function s:detect_test_provider()
       return provider
     endif
   endfor
-  echom 'Could not find a test provider. Set testprg manually.'
+  echom 'Could not find a test provider. Set g:testdrive#testprg manually.'
 endfunction
 
 
@@ -45,8 +45,8 @@ endfunction
 
 
 function s:get_test_program(provider)
-  if exists('g:testprg')
-    return g:testprg
+  if exists('g:testdrive#testprg')
+    return g:testdrive#testprg
   elseif g:testdrive#detect
     return s:detect_test_program(a:provider)
   endif
