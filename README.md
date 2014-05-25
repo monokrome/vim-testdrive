@@ -50,6 +50,9 @@ The last step is to register your provider with testdrive after defining it's
 module. This can be done by adding it to the `g:testdrive#test_providers`
 variable. The variable is expected to be a [list][lists] of provider modules.
 
+The ordering of items in this list matters, because the first provider which
+returns a non-empty value for detect will be used to run tests.
+
 By default, it is something like this:
 
 ```VimL
@@ -60,9 +63,11 @@ let g:testdrive#test_providers = [
 ```
 
 If your plugin provided an autoload module called `example#testdrive#provider`
-then you could add it to the list like this:
+then you could add it to the list from your plugin like so:
 
-    call add(g:testdrive#test_providers, 'example#testdrive#provider')
+```VimL
+call add(g:testdrive#test_providers, 'example#testdrive#provider')
+```
 
 The name of your module does not matter as long as it defines the expected
 functions. So, the module might look something like this in the most simple
@@ -75,9 +80,13 @@ endfunction
 
 
 function example#testdrive#provider#get_command()
-  return 'example command here'
+  return 'ls'
 endfunction
 ```
+
+This provider will always be used unless a previous provider succeeded in
+`detect`. When this provider executes, it will run the command `ls` and then
+send the resulting output into Vim's [quickfix][qf] window.
 
 
 [mca]: http://visionmedia.github.io/mocha/
