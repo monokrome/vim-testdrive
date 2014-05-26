@@ -80,7 +80,7 @@ function testdrive#test()
       " TODO: Why does shellescape break this?
       cexpr system(prg)
       if g:testdrive#always_open_results
-        copen
+        cwindow
       endif
     endif
     let &errorformat=oldErrorFormat
