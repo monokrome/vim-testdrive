@@ -6,4 +6,4 @@ endif
 let g:loaded_testdrive = 1
 
 
-command Test execute testdrive#test()
+command Test call testdrive#test()
