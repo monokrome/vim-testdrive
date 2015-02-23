@@ -19,6 +19,7 @@ following testing tools:
 
 - [mocha][mca] implemented [here][mochapvdr]
 - [npm][npm] implemented [here][npmpvdr]
+- [nose][nose] implemented [here][nosepvdr]
 
 Mocha support will currently only work if you have a file in `test/mocha.opts`.
 
@@ -131,11 +132,13 @@ send the resulting output into Vim's [quickfix][qf] window.
 
 [mca]: http://visionmedia.github.io/mocha/
 [npm]: http://npmjs.org
+[nose]: https://github.com/nose-devs/nose
 [qf]: http://vimhelp.appspot.com/quickfix.txt.html#quickfix
 [efm]: http://vimhelp.appspot.com/options.txt.html#%27errorformat%27
 [prvdr]: https://github.com/monokrome/vim-testdrive#providers
 [npmpvdr]: https://github.com/monokrome/vim-testdrive/blob/master/autoload/testdrive/providers/npm.vim
 [mochapvdr]: https://github.com/monokrome/vim-testdrive/blob/master/autoload/testdrive/providers/mocha.vim
+[nosepvdr]: https://github.com/monokrome/vim-testdrive/blob/master/autoload/testdrive/providers/nose.vim
 [dsptch]: https://github.com/tpope/vim-dispatch
 [fndfl]: http://vimhelp.appspot.com/eval.txt.html#findfile%28%29
 [lists]: http://vimhelp.appspot.com/eval.txt.html#Lists
