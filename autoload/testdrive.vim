@@ -3,6 +3,7 @@ if !exists('g:testdrive#test_providers')
   call add(g:testdrive#test_providers, 'testdrive#providers#mocha')
   call add(g:testdrive#test_providers, 'testdrive#providers#npm')
   call add(g:testdrive#test_providers, 'testdrive#providers#nose')
+  call add(g:testdrive#test_providers, 'testdrive#providers#pytest')
 endif
 
 
