@@ -13,7 +13,7 @@ endif
 
 
 if !exists('g:testdrive#use_dispatch')
-  let g:testdrive#use_dispatch=0
+  let g:testdrive#use_dispatch=1
 endif
 
 
@@ -57,6 +57,7 @@ endfunction
 
 function s:get_test_errorformat(provider, command)
   let formatter=a:provider.'#get_errorformat'
+
   if exists('*'.formatter)
     return function(formatter)(a:command)
   endif
@@ -66,12 +67,15 @@ endfunction
 function testdrive#test()
   let provider=s:detect_test_provider()
   let prg=s:get_test_program(provider)
+
   if !empty(prg)
     let oldErrorFormat=&errorformat
     let newErrorFormat=s:get_test_errorformat(provider, prg)
+
     if !empty(newErrorFormat)
       let &errorformat=newErrorFormat
     endif
+
     if g:testdrive#use_dispatch == 1
       let dispatch_suffix=''
       if !g:testdrive#always_open_results
@@ -85,6 +89,7 @@ function testdrive#test()
         cwindow
       endif
     endif
+
     let &errorformat=oldErrorFormat
   endif
 endfunction
