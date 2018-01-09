@@ -1,9 +1,9 @@
-function! testdrive#providers#pytest#detect()
+function! testdrive#test_providers#pytest#detect()
   return findfile('setup.py', '.;')
 endfunction
 
 
-function! testdrive#providers#pytest#get_command()
+function! testdrive#test_providers#pytest#get_command()
   " TODO: This could definitely be more intelligent.
   return 'py.test'
 endfunction

@@ -1,14 +1,20 @@
 if !exists('g:testdrive#test_providers')
   let g:testdrive#test_providers = []
-  call add(g:testdrive#test_providers, 'testdrive#providers#mocha')
-  call add(g:testdrive#test_providers, 'testdrive#providers#npm')
-  call add(g:testdrive#test_providers, 'testdrive#providers#nose')
-  call add(g:testdrive#test_providers, 'testdrive#providers#pytest')
+  call add(g:testdrive#test_providers, 'testdrive#test_providers#jest')
+  call add(g:testdrive#test_providers, 'testdrive#test_providers#mocha')
+  call add(g:testdrive#test_providers, 'testdrive#test_providers#npm')
+  call add(g:testdrive#test_providers, 'testdrive#test_providers#nose')
+  call add(g:testdrive#test_providers, 'testdrive#test_providers#pytest')
 endif
 
 
 if !exists('g:testdrive#detect')
   let g:testdrive#detect=1
+endif
+
+
+if !exists('g:testdrive#coverage')
+  let g:testdrive#coverage=1
 endif
 
 
@@ -34,7 +40,7 @@ function s:detect_test_provider()
       return provider
     endif
   endfor
-  echom 'Could not find a test provider. Set g:testdrive#testprg manually.'
+  echom 'Could not find a test provider. Set g:testdrive#test_provider manually.'
 endfunction
 
 
@@ -47,8 +53,8 @@ endfunction
 
 
 function s:get_test_program(provider)
-  if exists('g:testdrive#testprg')
-    return g:testdrive#testprg
+  if exists('g:testdrive#test_provider')
+    return g:testdrive#test_provider
   elseif g:testdrive#detect
     return s:detect_test_program(a:provider)
   endif
@@ -92,5 +98,10 @@ function testdrive#test()
 
     let &errorformat=oldErrorFormat
   endif
+
+  testdrive#cover()
 endfunction
 
+function testdrive#cover()
+
+endfunction
